@@ -1,0 +1,1167 @@
+{
+  "archetypes": [
+    {
+      "archetype_id": "a_explorer",
+      "name": "The Explorer",
+      "description": "Tries new spots weekly, saves lists, responds to novelty/limited menus.",
+      "primary_motivators": ["novelty", "hidden-gems", "seasonal-items"],
+      "preferred_offers": ["perk", "bogo"]
+    },
+    {
+      "archetype_id": "a_regular",
+      "name": "The Regular",
+      "description": "Rotates between 2–4 favorites, values consistency and quick perks.",
+      "primary_motivators": ["routine", "convenience", "status"],
+      "preferred_offers": ["fixed_discount", "percent_off"]
+    },
+    {
+      "archetype_id": "a_datenight",
+      "name": "The Date-Nighter",
+      "description": "Books for vibes and moments; high sensitivity to ambiance and service.",
+      "primary_motivators": ["vibe", "experience", "shareable-moments"],
+      "preferred_offers": ["perk", "fixed_discount"]
+    },
+    {
+      "archetype_id": "a_networker",
+      "name": "The Networker",
+      "description": "Uses venues for meetings; prefers quiet corners and premium service.",
+      "primary_motivators": ["status", "space", "service"],
+      "preferred_offers": ["perk", "vip-access"]
+    },
+    {
+      "archetype_id": "a_coffeenomad",
+      "name": "The Coffee Nomad",
+      "description": "Optimizes for daytime work sessions; repeats coffee orders, tips well.",
+      "primary_motivators": ["workspace", "consistency", "quality"],
+      "preferred_offers": ["fixed_discount", "bogo"]
+    },
+    {
+      "archetype_id": "a_budgethunter",
+      "name": "The Budget Hunter",
+      "description": "Price-aware and deal-driven; high redemption propensity, lower AOV.",
+      "primary_motivators": ["value", "discounts", "caps"],
+      "preferred_offers": ["percent_off", "bogo", "fixed_discount"]
+    }
+  ],
+  "users": [
+    {
+      "user_id": "u_001",
+      "created_at": "2026-01-05T18:12:00Z",
+      "status": "active",
+      "home_city": "Chicago",
+      "referral_source": "instagram",
+      "membership_tier": "plus",
+      "membership_start_at": "2026-01-06T00:00:00Z",
+      "membership_end_at": "2026-02-06T00:00:00Z",
+      "last_active_at": "2026-01-29T03:22:10Z",
+      "push_opt_in": true,
+      "email_opt_in": false,
+      "archetype_primary": "a_explorer",
+      "archetype_scores_json": {
+        "a_explorer": 0.82,
+        "a_datenight": 0.58,
+        "a_regular": 0.31,
+        "a_budgethunter": 0.22
+      },
+      "favorite_drink_types": ["cocktail", "negroni-variants", "smoky"],
+      "preferred_days": ["fri", "sat"]
+    },
+    {
+      "user_id": "u_002",
+      "created_at": "2026-01-12T02:40:00Z",
+      "status": "active",
+      "home_city": "Chicago",
+      "referral_source": "referral",
+      "membership_tier": "none",
+      "membership_start_at": null,
+      "membership_end_at": null,
+      "last_active_at": "2026-01-28T19:11:48Z",
+      "push_opt_in": true,
+      "email_opt_in": true,
+      "archetype_primary": "a_budgethunter",
+      "archetype_scores_json": {
+        "a_budgethunter": 0.77,
+        "a_regular": 0.52,
+        "a_explorer": 0.29
+      },
+      "favorite_drink_types": ["beer", "simple-cocktails"],
+      "preferred_days": ["thu", "fri"]
+    },
+    {
+      "user_id": "u_003",
+      "created_at": "2025-12-22T15:05:00Z",
+      "status": "active",
+      "home_city": "Chicago",
+      "referral_source": "partner",
+      "membership_tier": "basic",
+      "membership_start_at": "2025-12-23T00:00:00Z",
+      "membership_end_at": "2026-01-23T00:00:00Z",
+      "last_active_at": "2026-01-27T16:09:30Z",
+      "push_opt_in": false,
+      "email_opt_in": true,
+      "archetype_primary": "a_regular",
+      "archetype_scores_json": {
+        "a_regular": 0.86,
+        "a_coffeenomad": 0.44,
+        "a_budgethunter": 0.28
+      },
+      "favorite_drink_types": ["old-fashioned", "whiskey-forward"],
+      "preferred_days": ["wed", "thu"]
+    },
+    {
+      "user_id": "u_004",
+      "created_at": "2026-01-02T20:20:00Z",
+      "status": "active",
+      "home_city": "Chicago",
+      "referral_source": "tiktok",
+      "membership_tier": "plus",
+      "membership_start_at": "2026-01-03T00:00:00Z",
+      "membership_end_at": "2026-02-03T00:00:00Z",
+      "last_active_at": "2026-01-30T01:42:12Z",
+      "push_opt_in": true,
+      "email_opt_in": true,
+      "archetype_primary": "a_datenight",
+      "archetype_scores_json": {
+        "a_datenight": 0.83,
+        "a_explorer": 0.55,
+        "a_networker": 0.18
+      },
+      "favorite_drink_types": ["sparkling", "spritz", "dessert-cocktails"],
+      "preferred_days": ["sat"]
+    },
+    {
+      "user_id": "u_005",
+      "created_at": "2026-01-08T13:10:00Z",
+      "status": "active",
+      "home_city": "Chicago",
+      "referral_source": "organic",
+      "membership_tier": "none",
+      "membership_start_at": null,
+      "membership_end_at": null,
+      "last_active_at": "2026-01-29T18:01:02Z",
+      "push_opt_in": true,
+      "email_opt_in": false,
+      "archetype_primary": "a_coffeenomad",
+      "archetype_scores_json": {
+        "a_coffeenomad": 0.91,
+        "a_regular": 0.57,
+        "a_budgethunter": 0.33
+      },
+      "favorite_drink_types": ["latte", "cold-brew", "seasonal-coffee"],
+      "preferred_days": ["mon", "tue", "wed", "thu", "fri"]
+    },
+    {
+      "user_id": "u_006",
+      "created_at": "2026-01-18T00:55:00Z",
+      "status": "active",
+      "home_city": "Chicago",
+      "referral_source": "event",
+      "membership_tier": "basic",
+      "membership_start_at": "2026-01-18T01:00:00Z",
+      "membership_end_at": "2026-02-18T01:00:00Z",
+      "last_active_at": "2026-01-26T22:12:44Z",
+      "push_opt_in": true,
+      "email_opt_in": true,
+      "archetype_primary": "a_networker",
+      "archetype_scores_json": {
+        "a_networker": 0.79,
+        "a_regular": 0.49,
+        "a_explorer": 0.35
+      },
+      "favorite_drink_types": ["espresso-martini", "premium-spirits"],
+      "preferred_days": ["tue", "wed", "thu"]
+    },
+    {
+      "user_id": "u_007",
+      "created_at": "2026-01-10T04:20:00Z",
+      "status": "active",
+      "home_city": "Chicago",
+      "referral_source": "instagram",
+      "membership_tier": "none",
+      "membership_start_at": null,
+      "membership_end_at": null,
+      "last_active_at": "2026-01-25T04:44:29Z",
+      "push_opt_in": false,
+      "email_opt_in": true,
+      "archetype_primary": "a_explorer",
+      "archetype_scores_json": {
+        "a_explorer": 0.74,
+        "a_datenight": 0.41,
+        "a_budgethunter": 0.36
+      },
+      "favorite_drink_types": ["mezcal", "spicy", "sours"],
+      "preferred_days": ["fri", "sat"]
+    },
+    {
+      "user_id": "u_008",
+      "created_at": "2025-12-30T19:01:00Z",
+      "status": "active",
+      "home_city": "Chicago",
+      "referral_source": "organic",
+      "membership_tier": "basic",
+      "membership_start_at": "2026-01-01T00:00:00Z",
+      "membership_end_at": "2026-02-01T00:00:00Z",
+      "last_active_at": "2026-01-29T14:29:59Z",
+      "push_opt_in": true,
+      "email_opt_in": true,
+      "archetype_primary": "a_regular",
+      "archetype_scores_json": {
+        "a_regular": 0.81,
+        "a_budgethunter": 0.46,
+        "a_coffeenomad": 0.22
+      },
+      "favorite_drink_types": ["lager", "highball", "light-cocktails"],
+      "preferred_days": ["thu", "fri"]
+    }
+  ],
+  "venues": [
+    {
+      "venue_id": "v_101",
+      "name": "The Backroom Pour",
+      "category": "speakeasy",
+      "city": "Chicago",
+      "neighborhood": "River North",
+      "price_level": 3,
+      "partner_status": "active",
+      "contract_start_at": "2025-12-01T00:00:00Z",
+      "contract_end_at": "2026-12-01T00:00:00Z",
+      "commission_rate_bps": 1200,
+      "payout_method": "ach",
+      "avg_rating": 4.6,
+      "tags": ["hidden", "late-night", "cocktails"]
+    },
+    {
+      "venue_id": "v_202",
+      "name": "Cinder Coffee",
+      "category": "cafe",
+      "city": "Chicago",
+      "neighborhood": "Wicker Park",
+      "price_level": 2,
+      "partner_status": "active",
+      "contract_start_at": "2026-01-01T00:00:00Z",
+      "contract_end_at": "2026-07-01T00:00:00Z",
+      "commission_rate_bps": 800,
+      "payout_method": "stripe",
+      "avg_rating": 4.4,
+      "tags": ["coffee", "pastries", "morning"]
+    },
+    {
+      "venue_id": "v_303",
+      "name": "Juniper & Neon",
+      "category": "cocktail_bar",
+      "city": "Chicago",
+      "neighborhood": "West Loop",
+      "price_level": 4,
+      "partner_status": "active",
+      "contract_start_at": "2026-01-10T00:00:00Z",
+      "contract_end_at": "2026-10-10T00:00:00Z",
+      "commission_rate_bps": 1500,
+      "payout_method": "stripe",
+      "avg_rating": 4.7,
+      "tags": ["premium", "date-night", "signature-menu"]
+    },
+    {
+      "venue_id": "v_404",
+      "name": "Maple Room Lounge",
+      "category": "speakeasy",
+      "city": "Chicago",
+      "neighborhood": "Logan Square",
+      "price_level": 3,
+      "partner_status": "active",
+      "contract_start_at": "2025-11-15T00:00:00Z",
+      "contract_end_at": "2026-11-15T00:00:00Z",
+      "commission_rate_bps": 1100,
+      "payout_method": "ach",
+      "avg_rating": 4.5,
+      "tags": ["hidden", "whiskey", "cozy"]
+    },
+    {
+      "venue_id": "v_505",
+      "name": "Saffron Rooftop",
+      "category": "restaurant",
+      "city": "Chicago",
+      "neighborhood": "Loop",
+      "price_level": 4,
+      "partner_status": "active",
+      "contract_start_at": "2026-01-05T00:00:00Z",
+      "contract_end_at": "2026-08-05T00:00:00Z",
+      "commission_rate_bps": 1300,
+      "payout_method": "stripe",
+      "avg_rating": 4.3,
+      "tags": ["rooftop", "views", "spritz"]
+    }
+  ],
+  "venue_locations": [
+    {
+      "venue_location_id": "vl_101_1",
+      "venue_id": "v_101",
+      "address": "River North, Chicago, IL",
+      "lat": 41.8925,
+      "lng": -87.6332,
+      "hours_json": { "thu": "6pm-12am", "fri": "6pm-2am", "sat": "6pm-2am" },
+      "is_primary": true
+    },
+    {
+      "venue_location_id": "vl_202_1",
+      "venue_id": "v_202",
+      "address": "Wicker Park, Chicago, IL",
+      "lat": 41.9088,
+      "lng": -87.6795,
+      "hours_json": {
+        "mon": "7am-5pm",
+        "tue": "7am-5pm",
+        "wed": "7am-5pm",
+        "thu": "7am-6pm",
+        "fri": "7am-6pm",
+        "sat": "8am-6pm",
+        "sun": "8am-4pm"
+      },
+      "is_primary": true
+    },
+    {
+      "venue_location_id": "vl_303_1",
+      "venue_id": "v_303",
+      "address": "West Loop, Chicago, IL",
+      "lat": 41.8827,
+      "lng": -87.6479,
+      "hours_json": {
+        "wed": "5pm-12am",
+        "thu": "5pm-12am",
+        "fri": "5pm-2am",
+        "sat": "5pm-2am"
+      },
+      "is_primary": true
+    },
+    {
+      "venue_location_id": "vl_404_1",
+      "venue_id": "v_404",
+      "address": "Logan Square, Chicago, IL",
+      "lat": 41.9231,
+      "lng": -87.7093,
+      "hours_json": { "thu": "6pm-12am", "fri": "6pm-2am", "sat": "6pm-2am" },
+      "is_primary": true
+    },
+    {
+      "venue_location_id": "vl_505_1",
+      "venue_id": "v_505",
+      "address": "Loop, Chicago, IL",
+      "lat": 41.8781,
+      "lng": -87.6298,
+      "hours_json": {
+        "thu": "4pm-11pm",
+        "fri": "4pm-12am",
+        "sat": "11am-12am",
+        "sun": "11am-10pm"
+      },
+      "is_primary": true
+    }
+  ],
+  "menu_items": [
+    {
+      "menu_item_id": "m_101_01",
+      "venue_id": "v_101",
+      "name": "Smoke & Citrus",
+      "type": "cocktail",
+      "price_cents": 1700,
+      "is_seasonal": false,
+      "is_hidden": true,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_101_02",
+      "venue_id": "v_101",
+      "name": "Black Velvet Negroni",
+      "type": "cocktail",
+      "price_cents": 1800,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_101_03",
+      "venue_id": "v_101",
+      "name": "Espresso Martini",
+      "type": "cocktail",
+      "price_cents": 1850,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_101_04",
+      "venue_id": "v_101",
+      "name": "House Olives",
+      "type": "food",
+      "price_cents": 700,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+
+    {
+      "menu_item_id": "m_202_01",
+      "venue_id": "v_202",
+      "name": "Brown Sugar Oat Latte",
+      "type": "coffee",
+      "price_cents": 650,
+      "is_seasonal": true,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_202_02",
+      "venue_id": "v_202",
+      "name": "Cold Brew",
+      "type": "coffee",
+      "price_cents": 525,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_202_03",
+      "venue_id": "v_202",
+      "name": "Vanilla Latte",
+      "type": "coffee",
+      "price_cents": 625,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_202_04",
+      "venue_id": "v_202",
+      "name": "Almond Croissant",
+      "type": "food",
+      "price_cents": 475,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+
+    {
+      "menu_item_id": "m_303_01",
+      "venue_id": "v_303",
+      "name": "Neon Gimlet",
+      "type": "cocktail",
+      "price_cents": 1950,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_303_02",
+      "venue_id": "v_303",
+      "name": "Spiced Mezcal Sour",
+      "type": "cocktail",
+      "price_cents": 2050,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_303_03",
+      "venue_id": "v_303",
+      "name": "Champagne Spritz",
+      "type": "cocktail",
+      "price_cents": 2100,
+      "is_seasonal": true,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_303_04",
+      "venue_id": "v_303",
+      "name": "Truffle Fries",
+      "type": "food",
+      "price_cents": 1200,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+
+    {
+      "menu_item_id": "m_404_01",
+      "venue_id": "v_404",
+      "name": "Maple Old Fashioned",
+      "type": "cocktail",
+      "price_cents": 1750,
+      "is_seasonal": true,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_404_02",
+      "venue_id": "v_404",
+      "name": "Smoked Boulevardier",
+      "type": "cocktail",
+      "price_cents": 1850,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_404_03",
+      "venue_id": "v_404",
+      "name": "House Lager",
+      "type": "beer",
+      "price_cents": 800,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_404_04",
+      "venue_id": "v_404",
+      "name": "Charcuterie Board",
+      "type": "food",
+      "price_cents": 2200,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+
+    {
+      "menu_item_id": "m_505_01",
+      "venue_id": "v_505",
+      "name": "Aperol Spritz",
+      "type": "cocktail",
+      "price_cents": 1650,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_505_02",
+      "venue_id": "v_505",
+      "name": "Blood Orange Spritz",
+      "type": "cocktail",
+      "price_cents": 1750,
+      "is_seasonal": true,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_505_03",
+      "venue_id": "v_505",
+      "name": "Sparkling Water",
+      "type": "non_alcoholic",
+      "price_cents": 500,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    },
+    {
+      "menu_item_id": "m_505_04",
+      "venue_id": "v_505",
+      "name": "Fries",
+      "type": "food",
+      "price_cents": 900,
+      "is_seasonal": false,
+      "is_hidden": false,
+      "is_active": true
+    }
+  ],
+  "offers": [
+    {
+      "offer_id": "o_7001",
+      "venue_id": "v_101",
+      "title": "1st round perk",
+      "description": "Free bar snack with any cocktail (Plus+ only).",
+      "offer_type": "perk",
+      "value": 0,
+      "start_at": "2026-01-01T00:00:00Z",
+      "end_at": "2026-02-01T00:00:00Z",
+      "eligibility": "tier:plus",
+      "cap_total": 500,
+      "cap_per_user": 1,
+      "status": "live"
+    },
+    {
+      "offer_id": "o_7002",
+      "venue_id": "v_202",
+      "title": "Coffee Duo",
+      "description": "Buy a latte, get a drip coffee free (Weekdays).",
+      "offer_type": "bogo",
+      "value": 0,
+      "start_at": "2026-01-10T00:00:00Z",
+      "end_at": "2026-02-10T00:00:00Z",
+      "eligibility": "day:mon-fri",
+      "cap_total": 800,
+      "cap_per_user": 2,
+      "status": "live"
+    },
+    {
+      "offer_id": "o_7003",
+      "venue_id": "v_303",
+      "title": "Date Night Credit",
+      "description": "$10 off when you order 2 signature cocktails.",
+      "offer_type": "fixed_discount",
+      "value": 1000,
+      "start_at": "2026-01-15T00:00:00Z",
+      "end_at": "2026-02-15T00:00:00Z",
+      "eligibility": "min_items:2;type:cocktail",
+      "cap_total": 300,
+      "cap_per_user": 1,
+      "status": "live"
+    }
+  ],
+  "offer_claims": [
+    {
+      "claim_id": "c_8801",
+      "offer_id": "o_7001",
+      "user_id": "u_001",
+      "claimed_at": "2026-01-18T02:11:22Z",
+      "status": "redeemed"
+    },
+    {
+      "claim_id": "c_8802",
+      "offer_id": "o_7002",
+      "user_id": "u_005",
+      "claimed_at": "2026-01-21T16:14:09Z",
+      "status": "redeemed"
+    },
+    {
+      "claim_id": "c_8803",
+      "offer_id": "o_7003",
+      "user_id": "u_004",
+      "claimed_at": "2026-01-25T03:08:40Z",
+      "status": "redeemed"
+    }
+  ],
+
+  "orders": [
+    {
+      "order_id": "ord_0001",
+      "user_id": "u_001",
+      "venue_id": "v_101",
+      "venue_location_id": "vl_101_1",
+      "ordered_at": "2026-01-18T02:45:00Z",
+      "channel": "in_venue",
+      "status": "completed",
+      "subtotal_cents": 4100,
+      "tax_cents": 410,
+      "tip_cents": 650,
+      "total_cents": 5160,
+      "items": [
+        { "menu_item_id": "m_101_01", "qty": 2, "unit_price_cents": 1700 },
+        { "menu_item_id": "m_101_04", "qty": 1, "unit_price_cents": 700 }
+      ],
+      "applied_offer_id": "o_7001"
+    },
+    {
+      "order_id": "ord_0002",
+      "user_id": "u_003",
+      "venue_id": "v_404",
+      "venue_location_id": "vl_404_1",
+      "ordered_at": "2026-01-16T01:12:00Z",
+      "channel": "in_venue",
+      "status": "completed",
+      "subtotal_cents": 4400,
+      "tax_cents": 440,
+      "tip_cents": 700,
+      "total_cents": 5540,
+      "items": [
+        { "menu_item_id": "m_404_02", "qty": 2, "unit_price_cents": 1850 },
+        { "menu_item_id": "m_404_03", "qty": 1, "unit_price_cents": 800 }
+      ],
+      "applied_offer_id": null
+    },
+    {
+      "order_id": "ord_0003",
+      "user_id": "u_004",
+      "venue_id": "v_303",
+      "venue_location_id": "vl_303_1",
+      "ordered_at": "2026-01-25T03:20:00Z",
+      "channel": "in_venue",
+      "status": "completed",
+      "subtotal_cents": 6150,
+      "tax_cents": 615,
+      "tip_cents": 900,
+      "total_cents": 7665,
+      "items": [
+        { "menu_item_id": "m_303_01", "qty": 1, "unit_price_cents": 1950 },
+        { "menu_item_id": "m_303_03", "qty": 1, "unit_price_cents": 2100 },
+        { "menu_item_id": "m_303_04", "qty": 1, "unit_price_cents": 1200 },
+        { "menu_item_id": "m_505_03", "qty": 1, "unit_price_cents": 500 }
+      ],
+      "applied_offer_id": "o_7003"
+    },
+    {
+      "order_id": "ord_0004",
+      "user_id": "u_005",
+      "venue_id": "v_202",
+      "venue_location_id": "vl_202_1",
+      "ordered_at": "2026-01-21T16:22:00Z",
+      "channel": "pickup",
+      "status": "completed",
+      "subtotal_cents": 1125,
+      "tax_cents": 95,
+      "tip_cents": 150,
+      "total_cents": 1370,
+      "items": [
+        { "menu_item_id": "m_202_01", "qty": 1, "unit_price_cents": 650 },
+        { "menu_item_id": "m_202_02", "qty": 1, "unit_price_cents": 525 }
+      ],
+      "applied_offer_id": "o_7002"
+    },
+    {
+      "order_id": "ord_0005",
+      "user_id": "u_002",
+      "venue_id": "v_505",
+      "venue_location_id": "vl_505_1",
+      "ordered_at": "2026-01-19T23:05:00Z",
+      "channel": "in_venue",
+      "status": "completed",
+      "subtotal_cents": 3050,
+      "tax_cents": 305,
+      "tip_cents": 400,
+      "total_cents": 3755,
+      "items": [
+        { "menu_item_id": "m_505_01", "qty": 1, "unit_price_cents": 1650 },
+        { "menu_item_id": "m_505_04", "qty": 1, "unit_price_cents": 900 },
+        { "menu_item_id": "m_505_03", "qty": 1, "unit_price_cents": 500 }
+      ],
+      "applied_offer_id": null
+    },
+    {
+      "order_id": "ord_0006",
+      "user_id": "u_007",
+      "venue_id": "v_303",
+      "venue_location_id": "vl_303_1",
+      "ordered_at": "2026-01-24T04:05:00Z",
+      "channel": "in_venue",
+      "status": "completed",
+      "subtotal_cents": 6150,
+      "tax_cents": 615,
+      "tip_cents": 900,
+      "total_cents": 7665,
+      "items": [
+        { "menu_item_id": "m_303_02", "qty": 2, "unit_price_cents": 2050 },
+        { "menu_item_id": "m_303_04", "qty": 1, "unit_price_cents": 1200 },
+        { "menu_item_id": "m_505_03", "qty": 1, "unit_price_cents": 500 }
+      ],
+      "applied_offer_id": null
+    },
+    {
+      "order_id": "ord_0007",
+      "user_id": "u_008",
+      "venue_id": "v_404",
+      "venue_location_id": "vl_404_1",
+      "ordered_at": "2026-01-23T01:45:00Z",
+      "channel": "in_venue",
+      "status": "completed",
+      "subtotal_cents": 3450,
+      "tax_cents": 345,
+      "tip_cents": 500,
+      "total_cents": 4295,
+      "items": [
+        { "menu_item_id": "m_404_03", "qty": 2, "unit_price_cents": 800 },
+        { "menu_item_id": "m_404_01", "qty": 1, "unit_price_cents": 1750 },
+        { "menu_item_id": "m_101_04", "qty": 1, "unit_price_cents": 700 }
+      ],
+      "applied_offer_id": null
+    },
+    {
+      "order_id": "ord_0008",
+      "user_id": "u_006",
+      "venue_id": "v_101",
+      "venue_location_id": "vl_101_1",
+      "ordered_at": "2026-01-22T01:10:00Z",
+      "channel": "in_venue",
+      "status": "completed",
+      "subtotal_cents": 3700,
+      "tax_cents": 370,
+      "tip_cents": 600,
+      "total_cents": 4670,
+      "items": [
+        { "menu_item_id": "m_101_03", "qty": 2, "unit_price_cents": 1850 }
+      ],
+      "applied_offer_id": null
+    },
+    {
+      "order_id": "ord_0009",
+      "user_id": "u_005",
+      "venue_id": "v_202",
+      "venue_location_id": "vl_202_1",
+      "ordered_at": "2026-01-29T15:02:00Z",
+      "channel": "pickup",
+      "status": "completed",
+      "subtotal_cents": 1100,
+      "tax_cents": 92,
+      "tip_cents": 150,
+      "total_cents": 1342,
+      "items": [
+        { "menu_item_id": "m_202_02", "qty": 1, "unit_price_cents": 525 },
+        { "menu_item_id": "m_202_04", "qty": 1, "unit_price_cents": 475 },
+        { "menu_item_id": "m_202_03", "qty": 1, "unit_price_cents": 625 }
+      ],
+      "applied_offer_id": null
+    }
+  ],
+
+  "receipts": [
+    {
+      "receipt_id": "r_3001",
+      "order_id": "ord_0001",
+      "user_id": "u_001",
+      "venue_id": "v_101",
+      "uploaded_at": "2026-01-18T03:01:09Z",
+      "purchase_at": "2026-01-18T02:45:00Z",
+      "subtotal_cents": 4100,
+      "tax_cents": 410,
+      "tip_cents": 650,
+      "total_cents": 5160,
+      "status": "approved",
+      "verification_method": "ocr",
+      "image_url": "blob://receipts/r_3001",
+      "line_items_json": [
+        { "name": "Smoke & Citrus", "qty": 2, "price_cents": 1700 },
+        { "name": "House Olives", "qty": 1, "price_cents": 700 }
+      ]
+    },
+    {
+      "receipt_id": "r_3002",
+      "order_id": "ord_0002",
+      "user_id": "u_003",
+      "venue_id": "v_404",
+      "uploaded_at": "2026-01-16T01:40:12Z",
+      "purchase_at": "2026-01-16T01:12:00Z",
+      "subtotal_cents": 4400,
+      "tax_cents": 440,
+      "tip_cents": 700,
+      "total_cents": 5540,
+      "status": "approved",
+      "verification_method": "ocr",
+      "image_url": "blob://receipts/r_3002",
+      "line_items_json": [
+        { "name": "Smoked Boulevardier", "qty": 2, "price_cents": 1850 },
+        { "name": "House Lager", "qty": 1, "price_cents": 800 }
+      ]
+    },
+    {
+      "receipt_id": "r_3003",
+      "order_id": "ord_0003",
+      "user_id": "u_004",
+      "venue_id": "v_303",
+      "uploaded_at": "2026-01-25T03:44:10Z",
+      "purchase_at": "2026-01-25T03:20:00Z",
+      "subtotal_cents": 6150,
+      "tax_cents": 615,
+      "tip_cents": 900,
+      "total_cents": 7665,
+      "status": "approved",
+      "verification_method": "manual",
+      "image_url": "blob://receipts/r_3003",
+      "line_items_json": [
+        { "name": "Neon Gimlet", "qty": 1, "price_cents": 1950 },
+        { "name": "Champagne Spritz", "qty": 1, "price_cents": 2100 },
+        { "name": "Truffle Fries", "qty": 1, "price_cents": 1200 },
+        { "name": "Sparkling Water", "qty": 1, "price_cents": 500 }
+      ]
+    },
+    {
+      "receipt_id": "r_3004",
+      "order_id": "ord_0004",
+      "user_id": "u_005",
+      "venue_id": "v_202",
+      "uploaded_at": "2026-01-21T16:30:21Z",
+      "purchase_at": "2026-01-21T16:22:00Z",
+      "subtotal_cents": 1125,
+      "tax_cents": 95,
+      "tip_cents": 150,
+      "total_cents": 1370,
+      "status": "approved",
+      "verification_method": "ocr",
+      "image_url": "blob://receipts/r_3004",
+      "line_items_json": [
+        { "name": "Brown Sugar Oat Latte", "qty": 1, "price_cents": 650 },
+        { "name": "Cold Brew", "qty": 1, "price_cents": 525 }
+      ]
+    },
+    {
+      "receipt_id": "r_3005",
+      "order_id": "ord_0008",
+      "user_id": "u_006",
+      "venue_id": "v_101",
+      "uploaded_at": "2026-01-22T01:38:00Z",
+      "purchase_at": "2026-01-22T01:10:00Z",
+      "subtotal_cents": 3700,
+      "tax_cents": 370,
+      "tip_cents": 600,
+      "total_cents": 4670,
+      "status": "approved",
+      "verification_method": "ocr",
+      "image_url": "blob://receipts/r_3005",
+      "line_items_json": [
+        { "name": "Espresso Martini", "qty": 2, "price_cents": 1850 }
+      ]
+    }
+  ],
+
+  "transactions": [
+    {
+      "transaction_id": "t_5001",
+      "user_id": "u_001",
+      "venue_id": "v_101",
+      "receipt_id": "r_3001",
+      "amount_cents": 5160,
+      "currency": "USD",
+      "source": "receipt",
+      "ts": "2026-01-18T02:45:00Z"
+    },
+    {
+      "transaction_id": "t_5002",
+      "user_id": "u_003",
+      "venue_id": "v_404",
+      "receipt_id": "r_3002",
+      "amount_cents": 5540,
+      "currency": "USD",
+      "source": "receipt",
+      "ts": "2026-01-16T01:12:00Z"
+    },
+    {
+      "transaction_id": "t_5003",
+      "user_id": "u_004",
+      "venue_id": "v_303",
+      "receipt_id": "r_3003",
+      "amount_cents": 7665,
+      "currency": "USD",
+      "source": "receipt",
+      "ts": "2026-01-25T03:20:00Z"
+    },
+    {
+      "transaction_id": "t_5004",
+      "user_id": "u_005",
+      "venue_id": "v_202",
+      "receipt_id": "r_3004",
+      "amount_cents": 1370,
+      "currency": "USD",
+      "source": "receipt",
+      "ts": "2026-01-21T16:22:00Z"
+    },
+    {
+      "transaction_id": "t_5005",
+      "user_id": "u_006",
+      "venue_id": "v_101",
+      "receipt_id": "r_3005",
+      "amount_cents": 4670,
+      "currency": "USD",
+      "source": "receipt",
+      "ts": "2026-01-22T01:10:00Z"
+    }
+  ],
+
+  "rewards_ledger": [
+    {
+      "ledger_id": "l_10001",
+      "user_id": "u_001",
+      "venue_id": "v_101",
+      "ts": "2026-01-18T03:05:00Z",
+      "type": "earn",
+      "points_delta": 516,
+      "reason": "receipt_approved",
+      "reference_id": "r_3001"
+    },
+    {
+      "ledger_id": "l_10002",
+      "user_id": "u_001",
+      "venue_id": "v_101",
+      "ts": "2026-01-20T01:10:00Z",
+      "type": "redeem",
+      "points_delta": -300,
+      "reason": "reward_redeemed",
+      "reference_id": "c_8801"
+    },
+
+    {
+      "ledger_id": "l_10003",
+      "user_id": "u_005",
+      "venue_id": "v_202",
+      "ts": "2026-01-21T16:35:00Z",
+      "type": "earn",
+      "points_delta": 137,
+      "reason": "receipt_approved",
+      "reference_id": "r_3004"
+    },
+    {
+      "ledger_id": "l_10004",
+      "user_id": "u_004",
+      "venue_id": "v_303",
+      "ts": "2026-01-25T03:50:00Z",
+      "type": "earn",
+      "points_delta": 766,
+      "reason": "receipt_approved",
+      "reference_id": "r_3003"
+    },
+    {
+      "ledger_id": "l_10005",
+      "user_id": "u_006",
+      "venue_id": "v_101",
+      "ts": "2026-01-22T01:42:00Z",
+      "type": "earn",
+      "points_delta": 467,
+      "reason": "receipt_approved",
+      "reference_id": "r_3005"
+    }
+  ],
+
+  "referrals": [
+    {
+      "referral_id": "ref_01",
+      "referrer_user_id": "u_001",
+      "referred_user_id": "u_002",
+      "code": "YASH-CHICAGO-7Q2",
+      "sent_at": "2026-01-10T17:00:00Z",
+      "accepted_at": "2026-01-12T02:40:00Z",
+      "rewarded_at": "2026-01-12T03:00:00Z",
+      "status": "rewarded"
+    },
+    {
+      "referral_id": "ref_02",
+      "referrer_user_id": "u_004",
+      "referred_user_id": "u_006",
+      "code": "DATE-NEON-1K9",
+      "sent_at": "2026-01-17T20:00:00Z",
+      "accepted_at": "2026-01-18T00:55:00Z",
+      "rewarded_at": "2026-01-18T02:00:00Z",
+      "status": "rewarded"
+    }
+  ],
+
+  "reviews": [
+    {
+      "review_id": "rev_77",
+      "user_id": "u_001",
+      "venue_id": "v_101",
+      "created_at": "2026-01-18T04:02:00Z",
+      "rating": 5,
+      "text": "Hidden entrance, great service, strong drinks.",
+      "sentiment_score": 0.78,
+      "tags": ["vibe", "service"]
+    },
+    {
+      "review_id": "rev_78",
+      "user_id": "u_004",
+      "venue_id": "v_303",
+      "created_at": "2026-01-25T05:10:00Z",
+      "rating": 5,
+      "text": "Perfect for a date—signature drinks were legit.",
+      "sentiment_score": 0.81,
+      "tags": ["vibe", "menu"]
+    },
+    {
+      "review_id": "rev_79",
+      "user_id": "u_005",
+      "venue_id": "v_202",
+      "created_at": "2026-01-21T17:02:00Z",
+      "rating": 4,
+      "text": "Great pickup flow, latte was solid.",
+      "sentiment_score": 0.52,
+      "tags": ["convenience"]
+    }
+  ],
+
+  "events": [
+    {
+      "event_id": "e_1",
+      "ts": "2026-01-18T01:55:00Z",
+      "user_id": "u_001",
+      "venue_id": null,
+      "session_id": "s_abc",
+      "event_name": "app_open",
+      "properties_json": { "city": "Chicago" }
+    },
+    {
+      "event_id": "e_2",
+      "ts": "2026-01-18T02:02:00Z",
+      "user_id": "u_001",
+      "venue_id": "v_101",
+      "session_id": "s_abc",
+      "event_name": "venue_view",
+      "properties_json": { "entry_point": "search", "query": "speakeasy" }
+    },
+    {
+      "event_id": "e_3",
+      "ts": "2026-01-18T02:11:22Z",
+      "user_id": "u_001",
+      "venue_id": "v_101",
+      "session_id": "s_abc",
+      "event_name": "claim_offer",
+      "properties_json": { "offer_id": "o_7001" }
+    },
+    {
+      "event_id": "e_4",
+      "ts": "2026-01-18T03:01:09Z",
+      "user_id": "u_001",
+      "venue_id": "v_101",
+      "session_id": "s_abc",
+      "event_name": "receipt_approved",
+      "properties_json": {
+        "receipt_id": "r_3001",
+        "verification_method": "ocr"
+      }
+    },
+
+    {
+      "event_id": "e_10",
+      "ts": "2026-01-21T16:10:00Z",
+      "user_id": "u_005",
+      "venue_id": null,
+      "session_id": "s_coffee_1",
+      "event_name": "search",
+      "properties_json": { "query": "coffee", "filters": ["pickup"] }
+    },
+    {
+      "event_id": "e_11",
+      "ts": "2026-01-21T16:14:09Z",
+      "user_id": "u_005",
+      "venue_id": "v_202",
+      "session_id": "s_coffee_1",
+      "event_name": "claim_offer",
+      "properties_json": { "offer_id": "o_7002" }
+    },
+    {
+      "event_id": "e_12",
+      "ts": "2026-01-21T16:22:00Z",
+      "user_id": "u_005",
+      "venue_id": "v_202",
+      "session_id": "s_coffee_1",
+      "event_name": "order_completed",
+      "properties_json": { "order_id": "ord_0004", "aov_cents": 1370 }
+    },
+
+    {
+      "event_id": "e_20",
+      "ts": "2026-01-25T03:08:40Z",
+      "user_id": "u_004",
+      "venue_id": "v_303",
+      "session_id": "s_date_9",
+      "event_name": "claim_offer",
+      "properties_json": { "offer_id": "o_7003" }
+    },
+    {
+      "event_id": "e_21",
+      "ts": "2026-01-25T03:20:00Z",
+      "user_id": "u_004",
+      "venue_id": "v_303",
+      "session_id": "s_date_9",
+      "event_name": "order_completed",
+      "properties_json": { "order_id": "ord_0003", "aov_cents": 7665 }
+    }
+  ],
+
+  "support_tickets": [
+    {
+      "ticket_id": "st_900",
+      "created_at": "2026-01-22T15:10:00Z",
+      "user_id": "u_002",
+      "venue_id": null,
+      "type": "receipt_issue",
+      "priority": "med",
+      "status": "open",
+      "assignee": "ops_1",
+      "notes": "Receipt upload stuck on processing."
+    }
+  ]
+}

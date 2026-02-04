@@ -1,0 +1,194 @@
+Haven Test Data Dictionary:
+
+1) Core data model (tables)
+	A) users - Tracks consumers.
+		Fields
+			user_id (pk)
+			created_at
+			status (active, banned, deleted)
+			home_city
+			referral_source (organic, referral, instagram, tiktok, partner, event)
+			membership_tier (none, basic, plus, black)
+			membership_start_at, membership_end_at
+			last_active_at
+			push_opt_in (bool)
+			email_opt_in (bool)
+
+	B) venues - Partner businesses (speakeasies, cafes, bars, etc.).
+		Fields
+			venue_id (pk)
+			name
+			category (speakeasy, cocktail_bar, cafe, restaurant)
+			city, neighborhood
+			price_level (1–4)
+			partner_status (prospect, active, paused, churned)
+			contract_start_at, contract_end_at
+			commission_rate_bps (e.g., 1500 = 15.00%)
+			payout_method (ach, check, stripe)
+			avg_rating
+		tags 
+			(array: “hidden”, “coffee”, “late-night”)
+
+	C) venue_locations - If a venue has multiple locations.
+		Fields
+			venue_location_id (pk)
+			venue_id (fk)
+			address
+			lat, lng
+			hours_json
+			is_primary
+
+	D) menu_items - For “smart menus” and tracking item-level demand.
+		Fields
+			menu_item_id (pk)
+			venue_id (fk)
+			name
+			type (cocktail, mocktail, coffee, food)
+			price_cents
+			is_seasonal (bool)
+			is_hidden (bool)
+			is_active (bool)
+
+	E) user_sessions - App usage sessions.
+		Fields
+			session_id (pk)
+			user_id (fk)
+			started_at, ended_at
+			platform (ios, android, web)
+			app_version
+			city_context
+			utm_campaign, utm_source, utm_medium
+
+	F) events (single canonical event stream) - Everything important becomes an event (best for dashboards + funnels).
+		Fields
+			event_id (pk)
+			ts
+			user_id (nullable)
+			venue_id (nullable)
+			session_id (nullable)
+			event_name
+			examples: app_open, search, venue_view, menu_open, claim_offer, receipt_upload_started, receipt_approved, membership_purchase, reward_redeemed, referral_sent
+			properties_json (flexible payload)
+
+	G) offers - Promos a venue runs in Haven.
+		Fields
+			offer_id (pk)
+			venue_id (fk)
+			title
+			description
+			offer_type (percent_off, bogo, fixed_discount, perk)
+			value (e.g., 15% or 500 cents)
+			start_at, end_at
+			eligibility (tier-gated, first-visit, weekday-only, etc.)
+			cap_total, cap_per_user
+			status (draft, live, ended, paused)
+
+	H) offer_claims - Tracks when a user claims an offer (even before redemption).
+		Fields
+			claim_id (pk)
+			offer_id (fk)
+			user_id (fk)
+			claimed_at
+			status (claimed, redeemed, expired, voided)
+
+	I) receipts - Receipt-based membership validation + transaction attribution.
+		Fields
+			receipt_id (pk)
+			user_id (fk)
+			venue_id (fk)
+			uploaded_at
+			purchase_at (when the purchase happened)
+			subtotal_cents, tax_cents, tip_cents, total_cents
+			status (pending, approved, rejected, needs_review)
+			verification_method (ocr, manual, partner_pos)
+			image_url (or blob pointer)
+			line_items_json (optional if OCR extracts itemization)
+
+	J) transactions - Normalized “money movement” records (can be derived from receipts, POS, or Stripe).
+		Fields
+		transaction_id (pk)
+		user_id (fk)
+		venue_id (fk)
+		receipt_id (nullable)
+		amount_cents
+		currency
+		source (receipt, pos, stripe)
+		ts
+
+	K) rewards_ledger - The source of truth for points/credits.
+		Fields
+			ledger_id (pk)
+			user_id (fk)
+			venue_id (nullable)
+			ts
+			type (earn, redeem, adjust, expire)
+			points_delta
+			reason (receipt_approved, offer_redeem, referral_bonus, manual_adjust)
+			reference_id (receipt_id / claim_id / etc.)
+
+	L) referrals - Referral loop tracking.
+
+		Fields
+			referral_id (pk)
+			referrer_user_id (fk)
+			referred_user_id (nullable until signup)
+			code
+			sent_at
+			accepted_at
+			rewarded_at
+			status 
+				(sent, accepted, rewarded, expired)
+
+	M) reviews - Venue reviews + sentiment.
+		Fields
+			review_id (pk)
+			user_id (fk)
+			venue_id (fk)
+			created_at
+			rating (1–5)
+			text
+			sentiment_score (-1..1)
+			tags 
+				(array: vibe, price, service, music)
+
+	N) support_tickets - Operational admin needs.
+		Fields
+			ticket_id (pk)
+			created_at
+			user_id (nullable)
+			venue_id (nullable)
+			type (receipt_issue, payment, account, partner, bug)
+			priority (low, med, high, urgent)
+			status (open, in_progress, resolved)
+			assignee
+			notes
+
+2) Analytics-ready star schema (optional but recommended)
+	dim_date
+	date_id (YYYYMMDD)
+	date, dow, week, month, quarter, year
+	dim_user / dim_venue
+	Flattened versions of users / venues for analytics.
+	fact_events
+	event_id, date_id, user_id, venue_id, event_name, count=1, plus key properties
+	fact_transactions
+	transaction_id, date_id, user_id, venue_id, amount_cents
+
+This makes dashboards (MAU, cohorts, funnels) fast.
+
+3) Admin dashboard pages + required dataset slices
+	User Admin
+	User list: users + last 30d activity from events
+	Membership status: users + events (membership_purchase) + subscription provider (if any)
+	Fraud/review queue: receipts where status in (needs_review, pending)
+	Venue Admin (Partner Ops)
+	Partner status + contract dates: venues
+	Offer performance: offers + offer_claims + rewards_ledger
+	Revenue attribution: transactions (or receipts) grouped by venue
+	Growth Analytics
+	Acquisition: user_sessions + events with UTM fields
+	Activation funnel: app_open → venue_view → claim_offer/receipt_upload_started → receipt_approved → reward_redeemed
+	Retention: events grouped by user + week
+	Finance / Payouts
+	Venue payouts: transactions aggregated by venue_id * commission rules
+	Outstanding liabilities: rewards_ledger (unredeemed points/credits)
