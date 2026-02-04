@@ -21,6 +21,7 @@ type OrderItem = {
 /* An order is a container that holds one or more OrderItems */
 type Order = {
     order_id: string;
+    venue_id: string;
     items: OrderItem[];
 };
 
@@ -43,6 +44,20 @@ for (const mi of data.menu_items as MenuItem[]) {
     });
 }
 
+
+// Aggregate item sales
+interface ItemSale {
+    itemId: string; // the original menu_item_id
+    name: string; // human‑readable name
+    totalQty: number; // how many were sold in ALL venues
+    /* perVenue maps venue_id → { qty, revenueCents } */
+    totalRevenue: number;
+    sale_venue: Record<string, { qty: number; revenueCents: number }>;
+}
+
+/* A whole table – keyed by menu_item_id so we can look anything up instantly */
+type SalesByItem = Record<string, ItemSale>;
+
 /* Creating a lookup table for venue data*/
 type VenueEntry = {
     venue_id: string;
@@ -59,20 +74,21 @@ for (const v of data.venues as VenueEntry[]) {
     });
 }
 
-/* Types that describe our *aggregated* sales results */
+// Aggregate venue sales
+interface VenueSale {
+    venueId: string;
+    name: string;
+    category: string;
 
-/* One aggregated “bucket” for a single menu item */
-interface ItemSale {
-    itemId: string; // the original menu_item_id
-    name: string; // human‑readable name
-    totalQty: number; // how many were sold in ALL venues
-    /* perVenue maps venue_id → { qty, revenueCents } */
-    totalRevenue: number;
-    perVenue: Record<string, { qty: number; revenueCents: number }>;
+    totalQty: number;          // all items sold here
+    totalRevenueCents: number; // in cents
+
+    /* per‑item breakdown – reuse the same shape as ItemSale.perVenue */
+    items_sold: Record<string, { qty: number; revenueCents: number }>;
 }
 
-/* A whole table – keyed by menu_item_id so we can look anything up instantly */
-type SalesByItem = Record<string, ItemSale>;
+type SalesByVenue = Record<string, VenueSale>;   // key = venue_id
+
 
 /* The core helper – walk the orders and accumulate totals */
 export function getMenuSales(): SalesByItem {
@@ -100,7 +116,7 @@ export function getMenuSales(): SalesByItem {
                     name: lookup.name,
                     totalQty: 0, // start at zero
                     totalRevenue: 0.0, // start at zero
-                    perVenue: {}, // empty map for venue breakdowns
+                    sale_venue: {}, // empty map for venue breakdowns
                 };
                 /* Store it back into the main table so future items can find it. */
                 sales[menu_item_id] = sale;
@@ -121,11 +137,11 @@ export function getMenuSales(): SalesByItem {
             /* ----------------------------------------------------------------- */
 
             /* 7️⃣  Update the per‑venue breakdown for this same item.         */
-            let venueData = sale.perVenue[lookup.venue_id];
+            let venueData = sale.sale_venue[lookup.venue_id];
             if (!venueData) {
                 /* First time we see this item at this venue – create a sub‑bucket. */
                 venueData = { qty: 0, revenueCents: 0.0 };
-                sale.perVenue[lookup.venue_id] = venueData;
+                sale.sale_venue[lookup.venue_id] = venueData;
             }
             /* Add the quantity and revenue to that venue’s bucket. */
             venueData.qty += it.qty;
@@ -137,27 +153,64 @@ export function getMenuSales(): SalesByItem {
     return sales; // key = menu_item_id → ItemSale
 }
 
+export function getVenueSales(): SalesByVenue {
+    const sales: SalesByVenue = {};
+
+    /* Loop over every order exactly once */
+    for (const order of data.orders as Order[]) {
+        const venueId = order.venue_id;
+
+        /* Grab the lookup info for this venue – we already built it */
+        const venue = venueLookup.get(venueId);
+        if (!venue) continue; // safety guard
+
+        /* Create a new bucket for this venue if we haven’t seen it yet */
+        let venue_sales = sales[venueId];
+        if (!venue_sales) {
+            venue_sales = {
+                venueId,
+                name: venue.name,
+                category: venue.category,
+
+                totalQty: 0,
+                totalRevenueCents: 0,
+
+                items_sold: {}, // itemId → {qty, revenueCents}
+            };
+            sales[venueId] = venue_sales;
+        }
+
+        /* Now walk the line items in this order */
+        for (const it of order.items) {
+            const menuRec = menuLookup.get(it.menu_item_id);
+            if (!menuRec) continue; // safety guard
+
+            const revenueCents = menuRec.price_cents * it.qty;
+
+            /* Update venue‑wide totals */
+            venue_sales.totalQty += it.qty;
+            venue_sales.totalRevenueCents += revenueCents;
+
+            /* And the per‑item breakdown for this venue */
+            let itemData = venue_sales.items_sold[it.menu_item_id];
+            if (!itemData) {
+                itemData = { qty: 0, revenueCents: 0 };
+                venue_sales.items_sold[it.menu_item_id] = itemData;
+            }
+            itemData.qty += it.qty;
+            itemData.revenueCents += revenueCents;
+        } // end inner items loop
+    }   // end outer orders loop
+
+    return sales; // key = venue_id → VenueSale
+}
+
+
 const menuSales = getMenuSales();
+const venueSales = getVenueSales();
 
-/* Example: show a table of items with total qty */
-Object.values(menuSales).forEach((s) => {
-    console.log(`${s.name}: ${s.totalQty} sold: $${s.totalRevenue / 100} earned`);
-});
+console.log(venueSales);
 
-/* Or, break it down by venue */
-// console.log(
-//     "Smoke & Citrus at v_101:",
-//     menuSales["m_101_01"]?.perVenue["v_101"],
-// );
-
-// console.log(menuLookup);
-console.log(venueLookup);
-
-
-
-//
-//  What I came up with previously:
-//
 
 // Get the # of unique users (later advanced parsing for new and unique users)
 function getUserQty(): number {
