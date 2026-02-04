@@ -125,3 +125,51 @@ Object.values(menuSales).forEach(s => {
 
 /* Or, break it down by venue */
 console.log('Smoke & Citrus at v_101:', menuSales['m_101_01']?.perVenue['v_101']);
+
+//
+//  What I came up with previously:  
+//
+
+function getUserQty(): number {
+    let count: number = 0;
+    for (const user in data.users) {
+        count++;
+    }
+    return count
+}
+
+console.log(`${getUserQty()} unique users identified`);
+
+// Get # of transactions
+function getTransactionQty(): number {
+    let count: number = 0;
+    for (const t in data.transactions) {
+        count++;
+    }
+    return count
+}
+
+console.log(`${getTransactionQty()} total transactions`);
+
+// Get total amount gained from receipts
+function getReceiptTotals(): number {
+    let total: number = 0;
+    for (const r of data.receipts) {
+        total += r.total_cents;
+    } 
+    return total / 100;
+}
+
+console.log(`$${getReceiptTotals()} earned`);
+
+
+// Get total from tips from receipts
+function getReceiptTipTotals(): number {
+    let total: number = 0;
+    for (const r of data.receipts) {
+        total += r.tip_cents;
+    } 
+    return total / 100;
+}
+
+console.log(`$${getReceiptTipTotals()} gained from tips`);
