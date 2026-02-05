@@ -49,9 +49,9 @@ for (const mi of data.menu_items as MenuItem[]) {
 export interface ItemSale {
     itemId: string; // the original menu_item_id
     name: string; // human‑readable name
-    totalQty: number; // how many were sold in ALL venues
+    qty_sold: number; // how many were sold in ALL venues
     /* perVenue maps venue_id → { qty, revenueCents } */
-    totalRevenue: number;
+    item_rev_cents: number;
     sale_venue: Record<string, { qty: number; revenueCents: number }>;
 }
 
@@ -79,9 +79,8 @@ export interface VenueSale {
     venueId: string;
     name: string;
     category: string;
-
-    totalQty: number;          // all items sold here
-    totalRevenueCents: number; // in cents
+    qty_items_sold: number;          // all items sold here
+    total_rev_cents: number; // in cents
 
     /* per‑item breakdown – reuse the same shape as ItemSale.perVenue */
     items_sold: Record<string, { qty: number; revenueCents: number }>;
@@ -114,8 +113,8 @@ export function getMenuSales(): SalesByItem {
                 sale = {
                     itemId: menu_item_id,
                     name: lookup.name,
-                    totalQty: 0, // start at zero
-                    totalRevenue: 0.0, // start at zero
+                    qty_sold: 0, // start at zero
+                    item_rev_cents: 0.0, // start at zero
                     sale_venue: {}, // empty map for venue breakdowns
                 };
                 /* Store it back into the main table so future items can find it. */
@@ -129,10 +128,10 @@ export function getMenuSales(): SalesByItem {
             const revenueCents = lookup.price_cents * it.qty;
 
             /* Add the quantity to the overall total for this menu item. */
-            sale.totalQty += it.qty;
+            sale.qty_sold += it.qty;
 
             /* Add to total revenue */
-            sale.totalRevenue += revenueCents;
+            sale.item_rev_cents += revenueCents;
 
             /* ----------------------------------------------------------------- */
 
@@ -172,8 +171,8 @@ export function getVenueSales(): SalesByVenue {
                 name: venue.name,
                 category: venue.category,
 
-                totalQty: 0,
-                totalRevenueCents: 0,
+                qty_items_sold: 0,
+                total_rev_cents: 0,
 
                 items_sold: {}, // itemId → {qty, revenueCents}
             };
@@ -188,8 +187,8 @@ export function getVenueSales(): SalesByVenue {
             const revenueCents = menuRec.price_cents * it.qty;
 
             /* Update venue‑wide totals */
-            venue_sales.totalQty += it.qty;
-            venue_sales.totalRevenueCents += revenueCents;
+            venue_sales.qty_items_sold += it.qty;
+            venue_sales.total_rev_cents += revenueCents;
 
             /* And the per‑item breakdown for this venue */
             let itemData = venue_sales.items_sold[it.menu_item_id];
@@ -213,41 +212,33 @@ console.log(venueSales);
 
 
 // Get the # of unique users (later advanced parsing for new and unique users)
-function getUserQty(): number {
-    let count: number = 0;
-    for (const user in data.users) {
-        count++;
-    }
-    return count;
+function getQtyUsers(): number {
+    return Object.keys(data.users).length;
 }
 
 // Get # of transactions
 function getTransactionQty(): number {
-    let count: number = 0;
-    for (const t in data.transactions) {
-        count++;
-    }
-    return count;
+    return Object.keys(data.transactions).length;
 }
 
 // Get total amount gained from receipts
+//      'reduce' is a function that seems to act like its own recursive caller
+//      Given a base value, an accumulator, and a callback function
 function getReceiptTotals(): number {
-    let total: number = 0;
-    for (const r of data.receipts) {
-        total += r.total_cents;
-    }
-    return total / 100;
+    const totalCents = data.receipts.reduce(
+        (sum, receipt) => sum + receipt.total_cents, 0
+    );
+    return totalCents / 100;
 }
 
 // Get total from tips from receipts
 function getReceiptTipTotals(): number {
-    let total: number = 0;
-    for (const r of data.receipts) {
-        total += r.tip_cents;
-    }
-    return total / 100;
+    const totalCents = data.receipts.reduce(
+        (sum, receipt) => sum + receipt.tip_cents, 0
+    );
+    return totalCents / 100;
 }
-console.log(`${getUserQty()} unique users identified`);
+console.log(`${getQtyUsers()} unique users identified`);
 console.log(`${getTransactionQty()} total transactions`);
 console.log(`$${getReceiptTotals()} earned`);
 console.log(`$${getReceiptTipTotals()} gained from tips`);

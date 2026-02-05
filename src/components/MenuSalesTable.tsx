@@ -11,7 +11,7 @@ export default function MenuSalesTable({ data }: Props) {
             <TableHeader>
                 <TableRow>
                     <TableHead>Item</TableHead>
-                    <TableHead className="text-right">Qty Sold</TableHead>
+                    <TableHead className="text-right">Quantity Sold</TableHead>
                     <TableHead className="text-right">Revenue</TableHead>
                 </TableRow>
             </TableHeader>
@@ -20,9 +20,9 @@ export default function MenuSalesTable({ data }: Props) {
                 {data.map((row) => (
                     <TableRow key={row.itemId}>
                         <TableCell>{row.name}</TableCell>
-                        <TableCell className="text-right">{row.totalQty}</TableCell>
+                        <TableCell className="text-right">{row.qty_sold}</TableCell>
                         <TableCell className="text-right">
-                            ${(row.totalRevenue / 100).toFixed(2)}
+                            ${(row.item_rev_cents / 100).toFixed(2)}
                         </TableCell>
                     </TableRow>
                 ))}
