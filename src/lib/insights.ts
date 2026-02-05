@@ -46,7 +46,7 @@ for (const mi of data.menu_items as MenuItem[]) {
 
 
 // Aggregate item sales
-interface ItemSale {
+export interface ItemSale {
     itemId: string; // the original menu_item_id
     name: string; // human‑readable name
     totalQty: number; // how many were sold in ALL venues
@@ -75,7 +75,7 @@ for (const v of data.venues as VenueEntry[]) {
 }
 
 // Aggregate venue sales
-interface VenueSale {
+export interface VenueSale {
     venueId: string;
     name: string;
     category: string;
@@ -206,8 +206,8 @@ export function getVenueSales(): SalesByVenue {
 }
 
 
-const menuSales = getMenuSales();
-const venueSales = getVenueSales();
+export const menuSales = getMenuSales();
+export const venueSales = getVenueSales();
 
 console.log(venueSales);
 

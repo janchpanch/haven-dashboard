@@ -1,12 +1,11 @@
 import './App.css'
-import { Button } from './components/ui/button'
+import Dashboard from './components/Dashboard'
 
 function App() {
 
   return (
-    <div className='flex min-h-svh flex-col items-center justify-center'>
-      <Button>Click Me!</Button>
-    </div>    
+      <Dashboard/>
+    
   )
 }
 
