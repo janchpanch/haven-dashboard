@@ -1,10 +1,14 @@
 import './App.css'
-import Dashboard from './components/Dashboard'
+import Dashboard from './pages/DashboardPage'
+// import TestTable from './components/TestTable'
+
 
 function App() {
 
   return (
+    <>
       <Dashboard/>
+    </>
   )
 }
 

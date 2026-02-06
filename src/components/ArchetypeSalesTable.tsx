@@ -1,9 +1,9 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import type { ItemSale } from '@/lib/insights';
+import type { ArchetypeSale } from '@/lib/insights';
 import { useState } from 'react';
 
 interface Props {
-    data: ItemSale[];
+    data: ArchetypeSale[];
 }
 
 export default function MenuSalesTable({ data }: Props) {
@@ -18,11 +18,11 @@ export default function MenuSalesTable({ data }: Props) {
     };
 
     // helper to render the per‑venue breakdown
-    const renderDetail = (sale: ItemSale) => (
+    const renderDetail = (arch: ArchetypeSale) => (
         <ul className="pl-4 space-y-1 text-sm">
-            {Object.entries(sale.venue_list).map(([vid, { qty, revenueCents }]) => (
-                <li key={vid}>
-                    <strong>{vid}</strong> – Qty:{qty}, Rev:${(revenueCents / 100).toFixed(2)}
+            {Object.entries(arch.items_sold).map(([item_id, { qty, revenueCents }]) => (
+                <li key={item_id}>
+                    <strong>{item_id}</strong> – Qty:{qty}, Rev:${(revenueCents / 100).toFixed(2)}
                 </li>
             ))}
         </ul>
@@ -32,9 +32,8 @@ export default function MenuSalesTable({ data }: Props) {
         <Table>
             <TableHeader>
                 <TableRow>
-                    <TableHead>Item</TableHead>
-                    <TableHead className="text-center">Quantity Sold</TableHead>
-                    <TableHead className='text-center'>Type</TableHead>
+                    <TableHead className='text-center'>Archetype</TableHead>
+                    <TableHead className="text-center">Items Purchased</TableHead>
                     <TableHead className="text-right">Revenue</TableHead>
                 </TableRow>
             </TableHeader>
@@ -43,23 +42,22 @@ export default function MenuSalesTable({ data }: Props) {
                 {data.map(row => (
                     <>
                         {/* ------------- Data row ------------------- */}
-                        <TableRow key={row.itemId}>
+                        <TableRow key={row.archetype_name}>
                             <TableCell
-                                onClick={() => toggleRow(row.itemId)}
+                                onClick={() => toggleRow(row.archetype_name)}
                                 className="cursor-pointer hover:underline"
                             >
-                                {row.name}
+                                {row.archetype_name}
                             </TableCell>
                             <TableCell className="text-center">{row.qty_sold}</TableCell>
-                            <TableCell className='text-center'>{row.type}</TableCell>
                             <TableCell className="text-right">
-                                ${(row.item_rev_cents / 100).toFixed(2)}
+                                ${(row.rev_cents / 100).toFixed(2)}
                             </TableCell>
                         </TableRow>
 
                         {/* ------------- Detail row (conditionally rendered) --------- */}
-                        {openRows.has(row.itemId) && (
-                            <TableRow key={`${row.itemId}-detail`}>
+                        {openRows.has(row.archetype_name) && (
+                            <TableRow key={`${row.archetype_id}-detail`}>
                                 <TableCell colSpan={4} className="bg-muted/20 p-2">
                                     {renderDetail(row)}
                                 </TableCell>
